@@ -8,4 +8,6 @@ page_html = uClient.read()
 uClient.close()
 page_soup = soup(page_html, "html.parser")
 containers = page_soup.findAll("div", {"class":"item-container"})
-print(len(containers))
+
+container = containers[0]  # prototyping the loop
+print(container.div.div.a.img["title"])
