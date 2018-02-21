@@ -9,5 +9,16 @@ uClient.close()
 page_soup = soup(page_html, "html.parser")
 containers = page_soup.findAll("div", {"class":"item-container"})
 
-container = containers[0]  # prototyping the loop
-print(container.div.div.a.img["title"])
+container = containers[0]
+for container in containers:
+    brand = container.div.div.a.img["title"]
+    title_container = container.findAll("a", {"class":"item-title"})
+
+    product_container = title_container[0].text
+    shipping_container = container.findAll("li", {"class":"price-ship"})
+    shipping = shipping_container[0].text.strip()
+
+    print("brand: " + brand)
+    print("product_name: " + product_container)
+    print("shipping: " + shipping)
+    print("===============================")
